@@ -13,10 +13,54 @@ Install Django using pip: pip install django
 Create a new Django project: django-admin startproject ecommerce
 Create a new Django app within the project: python manage.py startapp catalog
 
+On EC2: 
+Basic ->
+sudo yum update
+sudo yum install python3
+python3 --version
+sudo yum install python3-pip
+
+Create a Virtual Environment -> 
+python3 -m venv myenv
+source myenv/bin/activate
+
+Install & Setup Django:
+pip install django
+django-admin startproject ecommerce
+cd ecommerce
+python manage.py startapp catalog
+
 Step 2: Define Models:
 Open the catalog/models.py file and define the necessary models, such as Product, Category, and Cart.
 Define the fields and relationships between the models, such as product name, description, price, category, etc.
 Run migrations to create the database tables: python manage.py makemigrations followed by python manage.py migrate
+
+[
+Open the catalog/models.py file:
+
+In the Django project, navigate to the catalog app directory and open the models.py file using a text editor or an integrated development environment (IDE).
+
+Define the necessary models:
+In the models.py file, define the models required for your E-commerce Product Catalog application, such as Product, Category, and Cart.
+Each model will represent a table in the database and its fields will correspond to the columns.
+
+Define the fields and relationships between the models:
+For example, you can define the Product model with fields like name, description, price, and category.
+Use Django's built-in field types to specify the data type and constraints for each field. For instance, you can use CharField, TextField, or DecimalField for different types of data.
+Establish relationships between the models, such as a foreign key relationship between Product and Category models, by using Django's relationship fields like ForeignKey or ManyToManyField.
+
+Run migrations to create the database tables:
+In the terminal or command prompt, make sure you are in the root directory of your Django project (ecommerce in this case).
+
+Run the following command to generate the necessary database migration files:
+python manage.py makemigrations
+
+This command analyzes the changes made to the models and generates the migration files required to create or modify the corresponding database tables.
+
+After generating the migration files, run the following command to apply the migrations and create the database tables:
+python manage.py migrate
+This command executes the generated migration files and creates the necessary database tables based on your model definition
+]
 
 Step 3: Create Views and Templates:
 Create views in the catalog/views.py file to handle the different functionalities, such as listing products, displaying product details, and managing the cart.
