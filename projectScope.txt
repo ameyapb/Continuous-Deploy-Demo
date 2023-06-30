@@ -1,0 +1,54 @@
+Project Scope: Setting up EC2 Instance, GitHub, Jenkins, Ansible, and Tomcat for CICD and Web Application Hosting
+
+High-Level Overview:
+The altered project scope focuses on setting up an EC2 instance on AWS, configuring GitHub for source code management, integrating Jenkins for continuous integration and deployment (CICD), utilizing Ansible for configuration management, and deploying a web application using Tomcat. This project will enable you to automate the build, test, and deployment process of your web application.
+
+High-Level Steps:
+
+Step 1: Define the Project Scope:
+Confirm the specific requirements and goals of the project.
+Determine the programming language and framework for the web application.
+
+Step 2: Provision an EC2 Instance:
+Log in to the AWS Management Console.
+Launch four EC2 instances with the desired specifications for each server (Developer, Jenkins, Ansible, and webserver). Make sure to select the appropriate Amazon Machine Image (AMI) for each server.
+Assign security groups to each instance to allow necessary inbound and outbound traffic.
+
+Step 3: Set up GitHub Repository:
+Create a GitHub account if you don't have one.
+Create a new repository for your project on GitHub.
+Configure repository settings, such as access controls and branch protection rules.
+
+Step 4: Configure Jenkins for CICD:
+Install Jenkins on your EC2 instance.
+Set up necessary plugins for integrating with GitHub and Ansible.
+Configure Jenkins security, authentication, and authorization settings.
+
+Step 5: Define Jenkinsfile:
+Create a Jenkinsfile in your GitHub repository.
+Define the stages and steps for the CICD pipeline.
+Specify the build, test, and deployment processes.
+
+Step 6: Configure Ansible:
+Install Ansible on the EC2 instance.
+Create Ansible playbooks to automate the configuration management tasks.
+Define roles and tasks for provisioning and configuring the web application environment.
+
+Step 7: Deploy Web Application with Tomcat:
+Set up and configure Tomcat on the EC2 instance.
+Package the web application code and deploy it to Tomcat.
+Configure Tomcat settings for optimal performance and security.
+
+Step 8: Integrate CICD Pipeline:
+Connect Jenkins with your GitHub repository.
+Configure Jenkins to trigger builds and deployments based on code changes.
+Set up proper notifications and error handling in the pipeline.
+
+Step 9: Test and Monitor:
+Implement automated testing scripts for the web application.
+Configure monitoring tools like AWS CloudWatch or Jenkins plugins to monitor application performance and logs.
+
+Step 10: Continuous Improvement:
+Regularly review and enhance the CICD pipeline based on feedback and lessons learned.
+Implement additional features like environment promotion, blue/green deployments, or automated scaling.
+Continuously automate and streamline the development and deployment processes.
