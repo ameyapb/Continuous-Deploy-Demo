@@ -78,3 +78,125 @@ Add functionality to manage the cart, such as adding products to the cart and di
 Step 6: Run the Application:
 Start the development server: python manage.py runserver
 Open a web browser and access the application at http://localhost:8000
+
+=============================================================================================================================================================
+Step 1: Set up the Django Project
+First, make sure you have Python installed on your system. Then, open a terminal and follow these commands:
+```shell
+# Install Django using pip
+pip install django
+# Create a new Django project
+django-admin startproject ecommerce
+# Create a new Django app within the project
+cd ecommerce
+python manage.py startapp catalog
+```
+
+Step 2: Define Models
+Open the `catalog/models.py` file and define the necessary models. Here’s an example implementation:
+```python
+from django.db import models
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+    def __str__(self):
+        return self.name
+class Product(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.name
+class Cart(models.Model):
+    products = models.ManyToManyField(Product, through=‘CartItem’)
+    def __str__(self):
+        return f”Cart {self.pk}”
+class CartItem(models.Model):
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    quantity = models.PositiveIntegerField()
+    def __str__(self):
+        return f”CartItem {self.pk}”
+```
+
+Run migrations to create the database tables:
+```shell
+python manage.py makemigrations
+python manage.py migrate
+```
+
+Step 3: Create Views and Templates
+Create views in the `catalog/views.py` file to handle the different functionalities. Here’s an example implementation:
+```python
+from django.shortcuts import render
+from .models import Product
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, ‘catalog/product_list.html’, {‘products’: products})
+def product_detail(request, product_id):
+    product = Product.objects.get(id=product_id)
+    return render(request, ‘catalog/product_detail.html’, {‘product’: product})
+def cart(request):
+    cart = Cart.objects.first()  # Assuming only one cart exists
+    return render(request, ‘catalog/cart.html’, {‘cart’: cart})
+```
+
+Create corresponding HTML templates in the `catalog/templates` directory. Here’s an example implementation for the templates mentioned in the views:
+`catalog/product_list.html`:
+```html
+{% for product in products %}
+  <div>
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <p>Price: {{ product.price }}</p>
+    <a href=“{% url ‘product_detail’ product.id %}“>View Details</a>
+  </div>
+{% endfor %}
+```
+`catalog/product_detail.html`:
+```html
+<h2>{{ product.name }}</h2>
+<p>{{ product.description }}</p>
+<p>Price: {{ product.price }}</p>
+<a href=“{% url ‘cart’ %}“>Add to Cart</a>
+```
+`catalog/cart.html`:
+```html
+<h2>Cart</h2>
+{% for item in cart.cartitem_set.all %}
+  <p>{{ item.product.name }} - Quantity: {{ item.quantity }}</p>
+{% empty %}
+  <p>Your cart is empty.</p>
+{% endfor %}
+```
+Step 4: Define URLs and Routing
+Configure URL patterns in the `ecommerce/urls.py` file to map URLs to the appropriate views. Here’s an example implementation:
+```python
+from django.urls import path
+from
+ catalog import views
+urlpatterns = [
+    path(‘products/’, views.product_list, name=‘product_list’),
+    path(‘products/<int:product_id>/’, views.product_detail, name=‘product_detail’),
+    path(‘cart/’, views.cart, name=‘cart’),
+]
+```
+
+Step 5: Implement Functionality
+In the views, implement logic to fetch products from the database and render them in the templates. Here’s an example implementation of the `product_list` view:
+```python
+from django.shortcuts import render
+from .models import Product
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, ‘catalog/product_list.html’, {‘products’: products})
+```
+You can similarly implement the remaining views (`product_detail` and `cart`) and their associated functionality.
+
+Step 6: Run the Application
+Start the development server:
+```shell
+python manage.py runserver
+```
+Open a web browser and access the application at http://localhost:8000/products/.
+That’s it! You’ve created a basic e-commerce product catalog web application using Django. Remember to continue building upon these steps to add more functionality and enhance the application further.
