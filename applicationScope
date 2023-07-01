@@ -30,6 +30,8 @@ django-admin startproject ecommerce
 cd ecommerce
 python manage.py startapp catalog
 
+
+
 Step 2: Define Models:
 Open the catalog/models.py file and define the necessary models, such as Product, Category, and Cart.
 Define the fields and relationships between the models, such as product name, description, price, category, etc.
