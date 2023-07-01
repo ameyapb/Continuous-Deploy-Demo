@@ -7,7 +7,7 @@ High-Level Steps:
 
 Step 1: Define the Project Scope:
 Confirm the specific requirements and goals of the project.
-Determine the programming language and framework for the web application. (E-commerce Product Catalog application using Python with Django)
+Determine the programming language and framework for the web application. (Reddit clone using Python with Django)
 
 Step 2: Provision an EC2 Instance:
 Log in to the AWS Management Console.
