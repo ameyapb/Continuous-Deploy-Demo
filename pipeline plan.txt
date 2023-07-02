@@ -1,0 +1,55 @@
+pipeline plan 
+
+
+Step 1: Set up Jenkins Pipeline
+
+Install Jenkins on your server and ensure it is running.
+Set up a new Jenkins Pipeline project.
+
+_____________________________________
+
+Step 2: Create a Jenkinsfile
+
+Create a file named Jenkinsfile in the root directory of your project.
+Open Jenkinsfile in a text editor.
+
+_____________________________________
+
+Step 3: Define Pipeline and Stages 
+
+a. initiate 
+b. build stage
+c. test stage
+d. deploy 
+
+
+Add the Initiate Stage :- This stage is responsible for initiating the pipeline as soon as there is a Git push and commit.
+
+Add the Build Stage :- This stage executes the build.yml file to install all the project dependencies.
+
+Add the Test Stage :- This stage runs the test.yml file to perform static testing on the project.
+
+Add the Deploy Stage :- This stage triggers the Ansible playbook to deploy the application on an EC2 instance
+
+_____________________________________
+ 
+Step 4 : Save and Configure Jenkins Pipeline
+
+Save the Jenkinsfile in your project's repository.
+In the Jenkins project configuration, select "Pipeline script from SCM" as the Definition.
+Specify the repository URL where you saved the Jenkinsfile.
+Optionally, set up credentials if your repository requires authentication.
+Save the pipeline configuration.
+
+******************************************
+
+Build stage specifications : 
+Identify the requirements and dependencies of your project.
+Determine the build process necessary to compile, package, or prepare your project for deployment.
+Consider any specific tools, compilers, or scripts required for the build.
+
+Test stage specifications : 
+Create a new file named test.yml (or any name of your choice) in the root directory of your project.
+Open the test.yml file in a text editor.
+Specify the configuration details for each step/task in the testing process.
+Include commands, arguments, or scripts necessary to execute the tests using the chosen testing frameworks or tools.
