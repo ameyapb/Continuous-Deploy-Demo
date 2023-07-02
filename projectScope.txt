@@ -1,90 +1,76 @@
-Project Scope: Setting up EC2 Instance, GitHub, Jenkins, Ansible, and Tomcat for CICD and Web Application Hosting
- 
 High-Level Overview:
-The altered project scope focuses on setting up an EC2 instance on AWS, configuring GitHub for source code management, integrating Jenkins for continuous integration and deployment (CICD), utilizing Ansible for configuration management, and deploying a web application using Tomcat. This project will enable you to automate the build, test, and deployment process of your web application.
- 
+The altered project scope focuses on setting up an EC2 instance on AWS as a development server, provisioning three additional servers (Live server, Jenkins server, and Ansible server) using Terraform, configuring GitHub for source code management, integrating Jenkins for continuous integration and deployment (CICD), utilizing Ansible for configuration management, and deploying a web application using Tomcat. This project will enable you to automate the build, test, and deployment process of your web application.
+
 High-Level Steps:
 
 Step 1: Define the Project Scope:
 Confirm the specific requirements and goals of the project.
-Determine the programming language and framework for the web application. (Reddit clone using Python with Django)
- 
-Step 2: Development server:
+Determine the programming language and framework for the web application (Reddit clone using Python with Django).
+
+Step 2: Provision Development Server:
 Log in to the AWS Management Console.
-Launch an EC2 instance with the desired specifications the developer server. 
-Make sure to select the appropriate Amazon Machine Image (AMI) for each server. 
-Assign security group to the instance to allow necessary inbound and outbound traffic. 
-This server will be the primary workstation for development activities. It will also serve as the host for running Terraform.
-  
-Step 3: Set up GitHub Repository:
-Create a Git repository (e.g., on GitHub) to store your Django project's source code. 
+Launch an EC2 instance with the desired specifications for the development server.
+Make sure to select the appropriate Amazon Machine Image (AMI) for the server.
+Assign a security group to the instance to allow necessary inbound and outbound traffic.
+
+Step 3: Provision Live Server, Jenkins Server, and Ansible Server using Terraform:
+Set up Terraform on your development server.
+Create Terraform configuration files (e.g., main.tf, variables.tf) in your Git repository.
+Define the necessary AWS resources (EC2 instances) for the Live server, Jenkins server, and Ansible server in your Terraform files.
+Specify the required configurations, such as instance types, AMIs, security groups, and tags.
+Run the Terraform commands to initialize, plan, and apply the infrastructure changes to provision the three servers.
+
+Step 4: Set up GitHub Repository:
+Create a Git repository (e.g., on GitHub) to store your Django project's source code.
 Initialize the repository with your initial codebase.
 Configure repository settings, such as access controls and branch protection rules.
-   
-Step 4: Configure Jenkins for CICD:
+
+Step 5: Configure Jenkins for CICD:
+Install Jenkins on the Jenkins server.
 Configure Jenkins and Git integration: Install the Git plugin on your Jenkins server and configure it to interact with your Git repository. Provide the repository URL and credentials.
 Configure Jenkins security, authentication, and authorization settings.
- 
-Step 5: Create the Jenkins job:
-Set up a Jenkins job that defines your CI/CD pipeline. 
+
+Step 6: Create the Jenkins job:
+Set up a Jenkins job that defines your CI/CD pipeline.
 This job will trigger the pipeline when changes are pushed to the Git repository.
- 
-Step 6: Configure the Jenkins job: 
-In the Jenkins job configuration, specify the Git repository URL and credentials. 
-Define the branch to monitor for changes. 
+
+Step 7: Configure the Jenkins job:
+In the Jenkins job configuration, specify the Git repository URL and credentials.
+Define the branch to monitor for changes.
 Configure Jenkins to poll the Git repository periodically or set up webhooks to trigger the Jenkins job automatically on new commits.
- 
-Step 7: Define the pipeline stages: 
-In the Jenkins job configuration, define the stages of your CI/CD pipeline. 
+
+Step 8: Define the pipeline stages:
+In the Jenkins job configuration, define the stages of your CI/CD pipeline.
 These stages typically include steps like cloning the Git repository, building the Django project, running tests, packaging the application, provisioning infrastructure with Terraform, and deploying with Ansible.
- 
-Step 8: Create a Jenkinsfile: 
-In the root of your Git repository, create a Jenkinsfile. 
-This file contains the declarative or scripted pipeline configuration written in Groovy. 
-Define the stages, steps, and actions to be executed during the CI/CD process. 
+
+Step 9: Create a Jenkinsfile:
+In the root of your Git repository, create a Jenkinsfile.
+This file contains the declarative or scripted pipeline configuration written in Groovy.
+Define the stages, steps, and actions to be executed during the CI/CD process.
 Specify the Git repository, branch, and other parameters in the Jenkinsfile.
- 
-Step 9: Trigger the pipeline: 
-Changes in the Git repository will trigger the pipeline. 
+
+Step 10: Trigger the pipeline:
+Changes in the Git repository will trigger the pipeline.
 Jenkins will clone the repository, run the defined stages, and execute the specified actions.
- 
-Step 10: Terraform integration: 
-Install Terraform on your development server. 
-Set up the necessary Terraform files (e.g., main.tf, variables.tf) in your Git repository. 
-These files define your infrastructure as code, specifying the AWS resources you want to provision.
- 
-Step 11: Configure Terraform backend: 
-Configure the Terraform backend to store the state file remotely (e.g., in an S3 bucket). 
-This ensures that the Terraform state is consistent across runs and accessible to all team members.
- 
-Step 12: Define Terraform modules: 
-Define reusable Terraform modules that encapsulate specific infrastructure components or configurations (e.g., EC2 instances, security groups). 
-These modules allow for consistent provisioning across environments.
- 
-Step 13: Create Terraform scripts in Jenkins: 
-In the Jenkins job configuration, add a stage to run Terraform commands. 
-Configure Jenkins to execute Terraform scripts to provision and manage infrastructure. 
-Use the Terraform CLI or a Jenkins plugin like "Terraform Plugin" to execute Terraform commands.
- 
-Step 14: Ansible integration: 
-After the infrastructure is provisioned with Terraform, use Ansible to configure the servers. 
-Configure the Jenkins job to trigger Ansible commands or scripts that connect to the Ansible server and initiate the deployment process on the live server.
- 
-Step 15: Configure Ansible:
-Install Ansible on the EC2 instance.
+
+Step 11: Ansible integration:
+After the infrastructure is provisioned with Terraform, use Ansible to configure the servers.
+Install Ansible on the Ansible server.
 Create Ansible playbooks to automate the configuration management tasks.
 Define roles and tasks for provisioning and configuring the web application environment.
- 
-Step 16: Deploy Web Application with Tomcat:
-Set up and configure Tomcat on the EC2 instance.
+
+Step 12: Deploy Web Application with Tomcat:
+Set up and configure Tomcat on the Live server.
 Package the web application code and deploy it to Tomcat.
 Configure Tomcat settings for optimal performance and security.
 
-Step 17: Test and Monitor:
+Step 13: Test and Monitor:
 Implement automated testing scripts for the web application.
 Configure monitoring tools like AWS CloudWatch or Jenkins plugins to monitor application performance and logs.
 
-Step 18: Continuous Improvement:
+Step 14: Continuous Improvement:
 Regularly review and enhance the CICD pipeline based on feedback and lessons learned.
 Implement additional features like environment promotion, blue/green deployments, or automated scaling.
 Continuously automate and streamline the development and deployment processes.
+
+By following these steps, you will have the Live server, Jenkins server, and Ansible server provisioned using Terraform, enabling you to automate the deployment and configuration management of your web application.
