@@ -5,6 +5,7 @@ provider "aws" {
 resource "aws_instance" "live_server" {
   ami           = "ami-06b09bfacae1453cb"  # Replace with the appropriate Amazon Linux AMI ID
   instance_type = "t2.micro"
+  key_name = "mytest"
 
   tags = {
     Name = "Live server"
@@ -14,6 +15,7 @@ resource "aws_instance" "live_server" {
 resource "aws_instance" "jenkins_server" {
   ami           = "ami-06b09bfacae1453cb"  # Replace with the appropriate Amazon Linux AMI ID
   instance_type = "t2.micro"
+  key_name = "mytest"
 
   user_data = <<-EOF
     #!/bin/bash
@@ -34,6 +36,7 @@ resource "aws_instance" "jenkins_server" {
 resource "aws_instance" "ansible_server" {
   ami           = "ami-06b09bfacae1453cb"  # Replace with the appropriate Amazon Linux AMI ID
   instance_type = "t2.micro"
+  key_name = "mytest"
 
   user_data = <<-EOF
     #!/bin/bash
