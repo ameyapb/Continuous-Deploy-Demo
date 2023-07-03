@@ -60,8 +60,11 @@ pipeline {
         
         stage('Deploy') {
             steps {
-                // Add deploy steps here
-                // For example, running an Ansible playbook or deploying to AWS
+                // Clone the Ansible playbook repository
+                git url: 'https://github.com/your-ansible-playbooks.git', branch: 'main'
+
+                // Run the Ansible playbook
+                sh 'ansible-playbook -i inventory playbook.yml'
             }
         }
     }
