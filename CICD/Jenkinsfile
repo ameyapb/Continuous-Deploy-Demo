@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    tools {
+        // Define Maven installation
+        maven 'Maven'
+           }
+
     stages {
         stage('Initiate') {
             steps {
