@@ -16,7 +16,7 @@ pipeline {
                 sh 'sudo yum install -y gcc'
 
                 // Install Python development headers
-                sh 'sudo yum install -y python3-devel
+                sh 'sudo yum install -y python3-devel'
 
                 // Activate the virtual environment
                 sh 'python3 -m venv myenv'
