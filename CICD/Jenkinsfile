@@ -28,9 +28,8 @@ pipeline {
                 // Run Django migration commands
                 //sh 'sh -c "source myenv/bin/activate && python manage.py makemigrations"'
                 //sh 'sh -c "source myenv/bin/activate && python manage.py migrate"'
-
-                sh 'python manage.py makemigrations'
-                sh 'python manage.py migrate'
+                sh 'myenv/bin/python manage.py makemigrations'
+                sh 'myenv/bin/python manage.py migrate'
 
 
                 // Add any necessary steps for initiating the pipeline
