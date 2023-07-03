@@ -24,7 +24,7 @@ pipeline {
                 //g. Enter the required information (e.g., username, password, SSH key) and provide a meaningful ID and description.
                 //h. Save the credentials.
                 
-                git credentialsId: 'your-credentials-id', url: 'https://github.com/ameyapb/ContinuousDeployDemo.git'
+                git credentialsId: 'your-credentials-id', url: 'https://github.com/ameyapb/ContinuousDeployDemo.git', branch: 'main'
 
                 sh 'python3 -m venv myenv && source myenv/bin/activate' // Create and activate the virtual environment
                 sh 'pip install -r requirements.txt' // Install project dependencies
