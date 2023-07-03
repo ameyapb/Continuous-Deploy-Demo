@@ -26,10 +26,10 @@ pipeline {
                 git credentialsId: 'ameyapb', url: 'https://github.com/ameyapb/ContinuousDeployDemo.git', branch: 'main'
 
                 // Run Django migration commands
-                //sh 'sh -c "source myenv/bin/activate && python manage.py makemigrations"'
-                //sh 'sh -c "source myenv/bin/activate && python manage.py migrate"'
-                sh 'myenv/bin/python3 manage.py makemigrations'
-                sh 'myenv/bin/python3 manage.py migrate'
+                sh 'sh -c "source myenv/bin/activate && python3 manage.py makemigrations"'
+                sh 'sh -c "source myenv/bin/activate && python3 manage.py migrate"'
+                //sh 'myenv/bin/python3 manage.py makemigrations'
+                //sh 'myenv/bin/python3 manage.py migrate'
 
 
                 // Add any necessary steps for initiating the pipeline
