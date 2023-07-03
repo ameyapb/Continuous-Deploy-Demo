@@ -24,7 +24,7 @@ lockfile==0.11.0
 matplotlib-inline==0.1.6
 mccabe==0.6.1
 parso==0.8.3
-pbr>=0.6,<1.0
+pbr>=0.6,<2.0
 pexpect==4.8.0
 pickleshare==0.7.5
 Pillow==9.5.0
