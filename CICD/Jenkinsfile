@@ -35,8 +35,11 @@ pipeline {
         
         stage('Build') {
             steps {
-                // Add build steps here
-                // For example, running a build script or compiling the code
+                // Set up Maven
+                tool 'Maven'
+
+                // Run Maven build
+                sh 'mvn clean package'
             }
         }
         
