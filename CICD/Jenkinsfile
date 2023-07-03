@@ -42,8 +42,16 @@ pipeline {
         
         stage('Test') {
             steps {
-                // Add test steps here
-                // For example, running unit tests or performing static code analysis
+                // Install dependencies for static analysis
+                sh 'pip install flake8 pylint'
+
+                // Run Flake8
+                sh 'flake8 <path_to_project_directory>'
+
+                // Run Pylint
+                sh 'pylint <path_to_project_directory>'
+
+                // Add more steps for other tests or checks
             }
         }
         
