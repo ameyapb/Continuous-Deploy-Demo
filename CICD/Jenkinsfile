@@ -4,6 +4,30 @@ pipeline {
     stages {
         stage('Initiate') {
             steps {
+                
+                // replace 'your-credentials-id' with the ID of the credentials you set up in Jenkins. Jenkins will use these credentials to authenticate with the Git repository when cloning the code. 
+                // Jenkins provides a built-in Credentials plugin that allows you to securely store and manage various types of credentials. You can configure the plugin to store credentials needed to access 
+                // your Git repository.
+
+                //To set up Jenkins credentials, follow these steps:
+                //a. Log in to your Jenkins server and go to the Jenkins home page.
+                //b. Click on "Credentials" in the sidebar menu.
+                //c. Select the appropriate credentials store (e.g., "Jenkins", "Jenkins Managed").
+                //d. Click on "Global credentials (unrestricted)" or a suitable domain.
+                //e. Click on "Add Credentials" to create a new set of credentials.
+                //f. Select the credential type based on your Git repository hosting service (e.g., username/password, SSH key).
+                //g. Enter the required information (e.g., username, password, SSH key) and provide a meaningful ID and description.
+                //h. Save the credentials.
+                
+                git credentialsId: 'your-credentials-id', url: 'https://github.com/ameyapb/ContinuousDeployDemo.git'
+
+                sh 'python3 -m venv myenv && source myenv/bin/activate' // Create and activate the virtual environment
+                sh 'pip install -r requirements.txt' // Install project dependencies
+
+                // Run Django migration commands
+                sh 'python manage.py makemigrations'
+                sh 'python manage.py migrate'
+                
                 // Add any necessary steps for initiating the pipeline
                 // For example, checkout source code from your repository
             }
