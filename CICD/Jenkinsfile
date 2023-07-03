@@ -14,7 +14,7 @@ pipeline {
 
                 // Activate the virtual environment
                 sh 'python3 -m venv myenv'
-                sh 'sh -c "source myenv/bin/activate && pip install -r CICD/requirements.txt"'
+                sh 'sh -c "source myenv/bin/activate && pip install -r ContinuousDeployDemo/CICD/requirements.txt"'
 
                 // Clone the Git repository
                 git credentialsId: 'ameyapb', url: 'https://github.com/ameyapb/ContinuousDeployDemo.git', branch: 'main'
