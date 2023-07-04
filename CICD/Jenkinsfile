@@ -4,8 +4,9 @@ pipeline {
     tools {
         // Define Maven installation
         maven 'Maven'
-           }
+    }
 
+    stages {
         stage('Initiate') {
             steps {
                 // Install Python and pip
@@ -29,14 +30,12 @@ pipeline {
                 // Run the shell script to perform Django migrations
                 sh 'chmod +x run_migrations.sh'
                 sh './run_migrations.sh'
-            
 
                 // Add any necessary steps for initiating the pipeline
                 // For example, checkout source code from your repository
             }
         }
 
-        
         stage('Build') {
             steps {
                 // Set up Maven
@@ -46,7 +45,7 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-        
+
         stage('Test') {
             steps {
                 // Install dependencies for static analysis
@@ -61,7 +60,7 @@ pipeline {
                 // Add more steps for other tests or checks
             }
         }
-        
+
         stage('Deploy') {
             steps {
                 // Clone the Ansible playbook repository
@@ -72,3 +71,4 @@ pipeline {
             }
         }
     }
+}
