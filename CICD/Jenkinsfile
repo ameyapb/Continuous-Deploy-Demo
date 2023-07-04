@@ -18,9 +18,15 @@ pipeline {
                 // Install Python development headers
                 sh 'sudo yum install -y python3-devel'
 
-                // Activate the virtual environment
+                // Activate the virtual environment and run Django migration commands
                 sh 'python3 -m venv myenv'
-                sh 'sh -c "source myenv/bin/activate && pip install -r requirements.txt"'
+                sh '''
+                    source myenv/bin/activate
+                    cd /var/lib/jenkins/workspace/myTest
+                    pip install -r requirements.txt
+                    python manage.py makemigrations
+                    python manage.py migrate
+                '''
 
                 // Clone the Git repository
                 git credentialsId: 'ameyapb', url: 'https://github.com/ameyapb/ContinuousDeployDemo.git', branch: 'main'
@@ -36,8 +42,8 @@ pipeline {
                 //sh 'source /var/lib/jenkins/workspace/myTest/myenv/bin/activate && /var/lib/jenkins/workspace/myTest/myenv/bin/python manage.py makemigrations'
                 //sh 'source /var/lib/jenkins/workspace/myTest/myenv/bin/activate && /var/lib/jenkins/workspace/myTest/myenv/bin/python manage.py migrate'
 
-                sh '/var/lib/jenkins/workspace/myTest/myenv/bin/python3 /var/lib/jenkins/workspace/myTest/manage.py makemigrations'
-                sh '/var/lib/jenkins/workspace/myTest/myenv/bin/python3 /var/lib/jenkins/workspace/myTest/manage.py migrate'
+                //sh '/var/lib/jenkins/workspace/myTest/myenv/bin/python3 /var/lib/jenkins/workspace/myTest/manage.py makemigrations'
+                //sh '/var/lib/jenkins/workspace/myTest/myenv/bin/python3 /var/lib/jenkins/workspace/myTest/manage.py migrate'
             
 
                 // Add any necessary steps for initiating the pipeline
