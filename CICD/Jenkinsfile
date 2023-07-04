@@ -12,7 +12,7 @@ pipeline {
                 // Install Python and pip
                 sh 'sudo yum update -y' 
                 sh 'sudo yum install -y python3 python3-pip'
-                sh 'sudo pip install --upgrade pip'
+                sh 'sudo pip install --upgrade pip' ||  echo "Pip upgrade failed"'
                 sh 'sudo yum groupinstall -y "Development Tools"'
                 sh 'sudo yum install -y gcc'
                 sh 'sudo pip3 install virtualenv'
