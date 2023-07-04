@@ -3,7 +3,7 @@ pipeline {
 
     tools {
         // Define Maven installation
-        maven 'Maven'
+        maven 'maven'
     }
 
     stages {
