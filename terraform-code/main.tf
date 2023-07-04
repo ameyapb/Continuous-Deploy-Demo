@@ -31,6 +31,11 @@ resource "aws_instance" "jenkins_server" {
     sudo yum install -y jenkins
     sudo systemctl start jenkins
     sudo systemctl enable jenkins
+    sudo yum install -y git
+    sudo yum install -y python3 python3-pip
+    sudo yum groupinstall -y "Development Tools"
+    sudo yum install -y gcc
+    sudo pip3 install virtualenv
   EOF
   
   tags = {
