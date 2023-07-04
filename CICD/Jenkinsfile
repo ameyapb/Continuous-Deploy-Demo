@@ -24,8 +24,8 @@ pipeline {
                     source myenv/bin/activate
                     cd /var/lib/jenkins/workspace/myTest
                     pip install -r requirements.txt
-                    python manage.py makemigrations
-                    python manage.py migrate
+                    ./myenv/bin/python manage.py makemigrations
+                    ./myenv/bin/python manage.py migrate
                 '''
 
                 // Clone the Git repository
