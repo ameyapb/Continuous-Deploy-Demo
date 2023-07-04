@@ -20,11 +20,11 @@ pipeline {
 
                 // Activate the virtual environment
                 sh 'python3 -m venv myenv'
-                sh 'source myenv/bin/activate && pip install --upgrade pip'
+                sh 'source myenv/bin/activate && python -m pip install --upgrade pip'
 
                 // Install project dependencies
                 sh 'source myenv/bin/activate && pip install -r requirements.txt'
-
+        
                 // Clone the Git repository
                 git credentialsId: 'ameyapb', url: 'https://github.com/ameyapb/ContinuousDeployDemo.git', branch: 'main'
 
@@ -32,8 +32,8 @@ pipeline {
                 sh 'chmod +x run_migrations.sh'
                 sh './run_migrations.sh'
 
-        // Add any necessary steps for initiating the pipeline
-        // For example, checkout source code from your repository
+                // Add any necessary steps for initiating the pipeline
+                // For example, checkout source code from your repository
             }
         }
 
