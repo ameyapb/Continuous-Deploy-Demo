@@ -18,15 +18,9 @@ pipeline {
                 // Install Python development headers
                 sh 'sudo yum install -y python3-devel'
 
-                // Activate the virtual environment and run Django migration commands
+                // Activate the virtual environment
                 sh 'python3 -m venv myenv'
-                sh '''
-                    source myenv/bin/activate
-                    cd /var/lib/jenkins/workspace/myTest
-                    pip install -r requirements.txt
-                    ./myenv/bin/python manage.py makemigrations
-                    ./myenv/bin/python manage.py migrate
-                '''
+                sh 'sh -c "source myenv/bin/activate && pip install -r requirements.txt"'
 
                 // Clone the Git repository
                 git credentialsId: 'ameyapb', url: 'https://github.com/ameyapb/ContinuousDeployDemo.git', branch: 'main'
