@@ -10,7 +10,7 @@ pipeline {
         stage('Initiate') {
             steps {
                 // Install Python and pip
-                sh 'sudo yum update -y'
+                sh 'sudo yum update -y' 
                 sh 'sudo yum install -y python3 python3-pip'
                 sh 'sudo yum groupinstall -y "Development Tools"'
                 sh 'sudo yum install -y gcc'
@@ -25,7 +25,7 @@ pipeline {
 
                 // Install project dependencies
                 sh 'source myenv/bin/activate && pip install -r requirements.txt'
-
+        
                 // Clone the Git repository
                 git credentialsId: 'ameyapb', url: 'https://github.com/ameyapb/ContinuousDeployDemo.git', branch: 'main'
 
@@ -41,7 +41,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Set up Maven
-                tool 'Maven'
+                tool 'maven'
 
                 // Run Maven build
                 sh 'mvn clean package'
